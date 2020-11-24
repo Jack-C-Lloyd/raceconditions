@@ -1,15 +1,16 @@
 package CI646.threads0;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 // Example adapted from https://www.javacodegeeks.com
 
 public class CheckThenAct {
-    private int number;
+    private AtomicInteger number = new AtomicInteger();
 
     public void changeNumber() {
-        if (number == 0) {
+        if (number.compareAndSet(0, -1)) {
             Utils.simulateInterrupt(5);
             System.out.println(Thread.currentThread().getName() + " | Changed");
-            number = -1;
         } else {
             System.out.println(Thread.currentThread().getName() + " | Not changed");
         }

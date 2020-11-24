@@ -23,7 +23,7 @@ public class BankAccount {
         return balance;
     }
 
-    public void withdraw(int bal) {
+    public synchronized void withdraw(int bal) {
 
         if (balance >= bal) {
             System.out.println(person.getName() + " " + "is trying to withdraw");
@@ -40,7 +40,7 @@ public class BankAccount {
         System.out.println(person.getName() + " " + " withdrew £" + balance);
     }
 
-    public void deposit(int bal) {
+    public synchronized void deposit(int bal) {
         if (bal > 0) {
             System.out.println(person.getName() + " " + " is trying to deposit");
             try {
@@ -57,7 +57,7 @@ public class BankAccount {
 
     }
 
-    public void transfer(BankAccount to, int bal) {
+    public synchronized void transfer(BankAccount to, int bal) {
         if (bal > 0) {
             System.out.println(person.getName() + " " + " is trying to make a transfer");
             try {
